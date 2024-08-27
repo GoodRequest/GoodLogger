@@ -1,11 +1,12 @@
 // swift-tools-version: 6.0
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "GoodLogger",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v15),
         .macOS(.v10_15)
     ],
     products: [
@@ -16,11 +17,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "GoodLogger"
+            name: "GoodLogger",
+            swiftSettings: [.swiftLanguageMode(.v6)]
         ),
         .testTarget(
             name: "GoodLoggerTests",
-            dependencies: ["GoodLogger"]
-        )
+            dependencies: ["GoodLogger"],
+            swiftSettings: [.swiftLanguageMode(.v6)]
+        ),
     ]
 )

@@ -1,6 +1,6 @@
 //
 //  PrintLogger.swift
-//  
+//  GoodLogger
 //
 //  Created by Matus Klasovity on 30/01/2024.
 //
@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-public final class PrintLogger: GoodLogger {
+public struct PrintLogger: GoodLogger {
 
     public init() {}
 
