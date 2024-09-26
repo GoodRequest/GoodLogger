@@ -9,6 +9,7 @@ import Foundation
 import OSLog
 
 @available(iOS 14, *)
+@available(macOS 11, *)
 public final class OSLogLogger: GoodLogger {
 
     private let logger = Logger(subsystem: "OSLogSessionLogger", category: "Networking")

@@ -2,11 +2,17 @@ import XCTest
 @testable import GoodLogger
 
 final class GoodLoggerTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
 
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+    func testLoggers() throws {
+        var logger: GoodLogger = PrintLogger()
+
+        logger.log(level: .default, message: "Hello world", privacy: .auto)
+
+        if #available(macOS 11, *) {
+            logger = OSLogLogger()
+
+            logger.log(level: .default, message: "Hello OSLog", privacy: .auto)
+        }
     }
+
 }
