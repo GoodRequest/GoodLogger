@@ -1,6 +1,6 @@
 //
 //  OSLogLogger.swift
-//  
+//  GoodLogger
 //
 //  Created by Matus Klasovity on 30/01/2024.
 //
@@ -8,9 +8,7 @@
 import Foundation
 import OSLog
 
-@available(iOS 14, *)
-@available(macOS 11, *)
-public final class OSLogLogger: GoodLogger {
+public struct OSLogLogger: GoodLogger {
 
     private let logger = Logger(subsystem: "OSLogSessionLogger", category: "Networking")
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>300959124870-0h2mms6g7q0u7mla0u51mr3ihnurtgcm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.300959124870-0h2mms6g7q0u7mla0u51mr3ihnurtgcm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBAE6d_faz0OBr8-Xw9bqU-0jExj1WnUXU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>300959124870</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.goodrequest.sourcery</string>
+	<key>PROJECT_ID</key>
+	<string>sorcery-cb699</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sorcery-cb699.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:300959124870:ios:06c05e1efd6adc0c887007</string>
+</dict>
+</plist>
