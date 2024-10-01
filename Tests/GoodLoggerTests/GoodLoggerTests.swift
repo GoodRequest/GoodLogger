@@ -8,7 +8,7 @@ final class GoodLoggerTests: XCTestCase {
 
         logger.log(level: .default, message: "Hello world", privacy: .auto)
 
-        if #available(macOS 11, *) {
+        if #available(iOS 14, macOS 11, *) {
             logger = OSLogLogger()
 
             logger.log(level: .default, message: "Hello OSLog", privacy: .auto)
