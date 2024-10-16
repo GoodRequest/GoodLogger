@@ -5,7 +5,6 @@
 //  Created by Matus Klasovity on 30/01/2024.
 //
 
-import Foundation
 import OSLog
 
 public enum PrivacyType: Sendable {
@@ -17,7 +16,7 @@ public enum PrivacyType: Sendable {
 
 }
 
-public protocol GoodLogger {
+public protocol GoodLogger: Sendable {
 
     func log(level: OSLogType, message: String, privacy: PrivacyType)
 

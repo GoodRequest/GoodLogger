@@ -5,10 +5,9 @@
 //  Created by Andrej Jasso on 27/08/2024.
 //
 
-import Foundation
 import OSLog
 
-public struct FirebaseLogger: GoodLogger {
+public struct FirebaseLogger: GoodLogger, @unchecked Sendable {
 
     let crashlyticsLogger: CrashlyticsLogging
 

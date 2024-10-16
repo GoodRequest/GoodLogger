@@ -5,7 +5,6 @@
 //  Created by Matus Klasovity on 30/01/2024.
 //
 
-import Foundation
 import OSLog
 
 public struct PrintLogger: GoodLogger {
