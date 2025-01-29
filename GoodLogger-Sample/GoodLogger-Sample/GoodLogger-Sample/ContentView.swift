@@ -13,8 +13,8 @@ struct ContentView: View {
 
     // MARK: - Properties
 
-    private let osLogger = OSLogLogger()
-    private let printLogger = PrintLogger()
+    private let osLogger = OSLogLogger(logMetaData: true)
+    private let printLogger = PrintLogger(logMetaData: true)
     private let firebaseLogger = FirebaseLogger(crashlitics: Crashlytics.crashlytics())
 
     // MARK: - Body
@@ -22,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         Group {
             Button(action: {
-               osLogger.log(level: .debug, message: "Test", privacy: .auto)
+               osLogger.log(message: "Test \(5)")
             }) {
                 Text(verbatim: "Send Log OSLog")
                     .foregroundStyle(
@@ -45,7 +45,7 @@ struct ContentView: View {
             }
 
             Button(action: {
-                printLogger.log(level: .debug, message: "Test", privacy: .auto)
+                printLogger.log(message: "Test")
             }) {
                 Text(verbatim: "Send Log Print Logger")
                     .foregroundStyle(
@@ -68,7 +68,7 @@ struct ContentView: View {
             }
 
             Button(action: {
-                firebaseLogger?.log(level: .debug, message: "Test", privacy: .auto)
+                firebaseLogger?.log(message: "Test", level: .debug, privacy: .auto)
             }) {
                 Text(verbatim: "Send Log Firebase")
                     .foregroundStyle(
