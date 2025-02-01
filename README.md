@@ -1,94 +1,136 @@
-# GoodLogger
+# GoodLogger 📝
 ![Version](https://img.shields.io/badge/latest_version-1.3.0-blueviolet)
- ![Swift Version](https://img.shields.io/badge/swift-6-yellow)
- ![SPM](https://img.shields.io/badge/SwiftPM-supported-green)
-## Overview
+![Swift Version](https://img.shields.io/badge/swift-6-yellow)
+![SPM](https://img.shields.io/badge/SwiftPM-supported-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-GoodLogger is a simple and efficient logging library for Swift applications and Packages. It provides a straightforward API to log messages with different severity levels, making it easier to track and debug your applications.
+A lightweight, flexible logging library for Swift applications that supports multiple logging destinations and privacy levels.
 
-## Features
+## Features ✨
 
-- Easy to use API
-- Supports multiple log levels (Info, Debug, Error, etc.)
-- Configurable output technologies
+- 🚀 Simple, intuitive API
+- 🎯 Multiple logging destinations (Console, OSLog, Firebase)
+- 🔒 Privacy-aware logging with configurable sensitivity levels
+- 📱 Perfect for iOS, macOS, and Swift Package applications
+- 🛠 Extensible architecture through protocol-based design
+- 📊 File name and line number tracking
+- ⚡️ Zero external dependencies (Firebase integration optional)
 
-## Installation
+## Installation 📦
 
-To install GoodLogger, we recommend using the following Swift Package Manager
+### Swift Package Manager
 
-## Usage
+Add GoodLogger to your `Package.swift`:
 
-Here's a basic example of how to use GoodLogger in your application:
+```swift
+dependencies: [
+    .package(url: "https://github.com/yourusername/GoodLogger.git", from: "1.3.0")
+]
+```
+
+## Quick Start 🚀
 
 ```swift
 import GoodLogger
 
-let logger = OSLogger()
+// Choose your preferred logger
+let logger = PrintLogger()
+// or
+let osLogger = OSLogLogger()
+// or
+let firebaseLogger = FirebaseLogger(crashlytics: yourCrashlyticsInstance)
 
-logger.log(message: "This is an info message.")
+// Start logging!
+logger.log(message: "Application started")
 ```
 
-### Print Logger
+## Available Loggers 📋
 
-Simple print logger with a few nice parameters provided like line number and file name logged by default
+### PrintLogger
+Simple console logging with automatic file name and line number tracking:
 
-### OSLogger
+```swift
+let logger = PrintLogger()
+logger.log(message: "Debug message")  // Output: [FileName.swift:42] Debug message
+```
 
-The library is built around this logger where its functions like OSLogLevel and Privacy are used as parameters.
+### OSLogLogger
+Integration with Apple's unified logging system:
 
-### Firebase logs
+```swift
+let logger = OSLogLogger()
+logger.log(message: "User action completed", level: .info)
+logger.log(message: "Sensitive data", level: .debug, privacy: .private)
+```
 
-The FirebaseLogger struct is designed to integrate with Firebase Crashlytics without directly importing Firebase libraries. Instead, it relies on an input object that conforms to the CrashlyticsLogging protocol. Here's a detailed explanation:
+### FirebaseLogger
+Crashlytics integration through protocol-based design:
 
-Key Points
-Protocol-Based Design:
+```swift
+// First, conform to CrashlyticsLogging
+class MyCrashlytics: CrashlyticsLogging {
+    func log(_ msg: String) {
+        // Your implementation
+    }
+}
 
-The FirebaseLogger uses a protocol named CrashlyticsLogging. This protocol defines a method log(_ msg: String) that any conforming object must implement.
-By using a protocol, the logger can interact with any object that conforms to CrashlyticsLogging, without needing to know the specifics of the Firebase Crashlytics implementation.
-Dependency Injection:
+// Then use it
+let firebaseLogger = FirebaseLogger(crashlytics: MyCrashlytics())
+firebaseLogger.log(message: "Critical error occurred")
+```
 
-The logger does not create or manage the Crashlytics instance itself. Instead, it expects an instance of CrashlyticsLogging to be provided (injected) when needed.
-This approach decouples the logger from the Firebase SDK, making it more flexible and easier to test.
+## Custom Loggers 🛠
 
-### GoodLogger
+Create your own logger by implementing the `GoodLogger` protocol:
 
-If you need a custom logger you can just make your own logger using the GoodLogger protocol.
+```swift
+struct MyCustomLogger: GoodLogger {
+    func log(message: String, level: LogLevel = .info, privacy: Privacy = .public) {
+        // Your custom implementation
+    }
+}
+```
 
-## Sample Code
-
-Here's a sample code snippet from `ContentView.swift` demonstrating how to integrate GoodLogger into your SwiftUI application:
+## Complete Example 📱
 
 ```swift
 import SwiftUI
 import GoodLogger
-import Firebase
 
 struct ContentView: View {
-
-    // MARK: - Properties
-
-    private let osLogger = OSLogLogger()
-    private let printLogger = PrintLogger()
-    private let firebaseLogger = FirebaseLogger(crashlitics: Crashlytics.crashlytics())
-
-    // MARK: - Body
+    private let logger = PrintLogger()
     
     var body: some View {
-        Group {
-            Button(action: {
-               osLogger.log(message: "Test")
-            }) {
-                Text(verbatim: "Send Log OSLog")
-            }
+        Button("Log Event") {
+            logger.log(message: "Button tapped", level: .info)
         }
     }
 }
 ```
 
-## Contributing
+## Best Practices 💡
 
-Contributions are welcome! Please open an issue or submit a pull request on GitHub.
+- Use appropriate log levels (`debug`, `info`, `error`) for different scenarios
+- Consider privacy implications when logging sensitive data
+- Create a shared logger instance for consistent logging across your app
+- Implement custom loggers for specific needs (e.g., network logging, analytics)
 
-## License
+## Contributing 🤝
 
-GoodLogger is licensed under the MIT License. See the LICENSE file for more details.
+We welcome contributions! Here's how you can help:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License 📄
+
+GoodLogger is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
+
+## Support 💪
+
+- Create an [Issue](https://github.com/yourusername/GoodLogger/issues)
+- Follow for updates
+- Star the repository if you find it useful!
