@@ -5,6 +5,8 @@
 //  Created by Matus Klasovity on 30/01/2024.
 //
 
+import OSLog
+
 public enum PrivacyType: Sendable {
 
     case `public`
@@ -27,6 +29,9 @@ public enum LogLevel: Sendable {
 public protocol GoodLogger: Sendable {
 
     func log(message: Any, level: LogLevel?, privacy: PrivacyType?, fileName: String?, lineNumber: Int?)
+    
+    @available(*, deprecated, message: "Use `log(message: Any, level: LogLevel?, privacy: PrivacyType?, fileName: String?, lineNumber: Int?)` instead.")
+    func log(level: OSLogType, message: String, privacy: PrivacyType)
 
 }
 
@@ -45,6 +50,33 @@ public extension GoodLogger {
             privacy: privacy,
             fileName: fileName,
             lineNumber: lineNumber
+        )
+    }
+    
+    @available(*, deprecated, message: "Use `log(message: Any, level: LogLevel?, privacy: PrivacyType?, fileName: String?, lineNumber: Int?)` instead.")
+    func log(level: OSLogType, message: String, privacy: PrivacyType) {
+        let logLevel: LogLevel? = switch level {
+        case .default:
+            .info
+        case .info:
+            .info
+        case .debug:
+            .debug
+        case .error:
+            .error
+        case .fault:
+            .fault
+            
+        default:
+            nil
+        }
+        
+        self.log(
+            message: message,
+            level: logLevel,
+            privacy: privacy,
+            fileName: nil,
+            lineNumber: nil
         )
     }
 
